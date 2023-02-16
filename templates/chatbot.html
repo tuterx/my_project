@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+
+{%block title%}对话机器人{%endblock%}
+
+{%block head%}
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/GetResponse.js' )}}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{%endblock%}
+
+{%block body%}
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="chat-title">Chat with OpenAI</div>
+  </div>
+  <div class="chat-body">
+    <div id="chatlog" class="chatlog">
+      <h4>text-davinci-003产生的说:</h4>
+      <h5>
+          <div id="chatlog" class="chatlog">
+            <div class="answer-container">{{answer}}</div>
+          </div>
+      </h5>
+    </div>
+    <div class="chat-input-wrapper">
+      <div class="chat-input-container">
+        <form method="POST" action="{{ url_for('chatbot.get_response') }}">
+          <input type="text" class="chat-input" placeholder="Type a message..." name="question">
+          <button type="submit" class="chat-send-button">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
